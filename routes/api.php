@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +17,31 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::middleware('auth.token')->get('/me', function (Request $request) {
-    return $request->user();
+
+
+Route::middleware('auth.token')->group(function () {
+    Route::prefix('user')->group(function () {
+        Route::get('/me', function (Request $request) {
+            return $request->user();
+        });
+        Route::put('/{user}', [AuthController::class, 'update']);
+        Route::get('/all', [AuthController::class, 'showAll']);
+    });
+    Route::prefix('project')->group(function () {
+        Route::get('/', [ProjectController::class, 'index']);
+        Route::post('/store', [ProjectController::class, 'store']);
+        Route::get('/{project}', [ProjectController::class, 'show']);
+        Route::put('/{project}', [ProjectController::class, 'update']);
+    });
+    Route::prefix('activity')->group(function () {
+        Route::get('/', [ActivityController::class, 'index']);
+        Route::get('/all/{idProject}', [ActivityController::class, 'projectActivities']);
+        Route::post('/', [ActivityController::class, 'store']);
+        Route::get('/{activity}', [ActivityController::class, 'show']);
+        Route::put('/{activity}', [ActivityController::class, 'update']);
+    });
 });
+
 
 Route::controller(AuthController::class)->group(function ($router) {
     Route::post('signup', 'register')->name('register');

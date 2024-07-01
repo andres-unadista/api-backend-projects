@@ -32,7 +32,7 @@ class AuthController extends Controller
             $user = User::create($data);
             return new JsonResponse($user, Response::HTTP_CREATED);
         } catch (\Throwable $e) {
-            return response(['message' => 'User not saved', $e->getMessage()], Response::HTTP_BAD_REQUEST);
+            return response(['message' => 'User not saved'], Response::HTTP_BAD_REQUEST);
         }
     }
 
@@ -60,6 +60,42 @@ class AuthController extends Controller
         return $this->responseWithToken(access_token: auth()->refresh());
     }
 
+
+    public function showAll()
+    {
+        try {
+            $users = User::all();
+            return new JsonResponse(['users' => $users], Response::HTTP_OK);
+        } catch (\Throwable $e) {
+            return new JsonResponse(['message' => 'Users not found'], Response::HTTP_BAD_REQUEST);
+        }
+    }
+
+
+    public function update(Request $request, User $user)
+    {
+        try {
+            // Validate form data
+            $request->validate([
+                'name' => 'string|max:255',
+                'email' => 'string|max:255',
+                'password' => 'string|max:255',
+                'role' => 'string',
+                'image' => 'string|max:255',
+            ]);
+
+            $data = $request->all();
+            if ($data['password']) {
+                $data['password'] = Hash::make($data['password']);
+            }
+            $user->update($data);
+
+            return new JsonResponse(['user' => $user->refresh()], Response::HTTP_OK);
+        } catch (\Throwable $e) {
+            return response(['message' => 'User not updated'], Response::HTTP_BAD_REQUEST);
+        }
+    }
+
     /**
      * Log the user out (Invalidate the token).
      *
@@ -69,6 +105,6 @@ class AuthController extends Controller
     {
         auth()->logout();
 
-        return new JsonResponse(['sucess' => true]);
+        return new JsonResponse(['success' => true]);
     }
 }
