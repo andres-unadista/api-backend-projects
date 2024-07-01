@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
+    const USER = 'User';
 
     /**
      * The attributes that are mass assignable.
@@ -22,8 +23,13 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'image',
+        'role'
     ];
 
+    protected $attributes = [
+        'role' => self::USER
+    ];
     /**
      * The attributes that should be hidden for serialization.
      *

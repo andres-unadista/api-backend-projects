@@ -3,14 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Models\User;
 use App\Support\Exceptions\OAuthException;
 use App\Support\Traits\Authenticatable;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
     use Authenticatable;
+
+    function register(Request $request)
+    {
+        try {
+            // Validate form data
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|max:255',
+                'password' => 'required|string|max:255',
+                'role' => 'string',
+                'image' => 'string|max:255',
+            ]);
+            $data = $request->all();
+            $data['password'] = Hash::make($request->input('password'));
+            $user = User::create($data);
+            return new JsonResponse($user, Response::HTTP_CREATED);
+        } catch (\Throwable $e) {
+            return response(['message' => 'User not saved', $e->getMessage()], Response::HTTP_BAD_REQUEST);
+        }
+    }
 
     /**
      * Get a JWT via given credentials.

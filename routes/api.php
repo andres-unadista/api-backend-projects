@@ -20,6 +20,7 @@ Route::middleware('auth.token')->get('/me', function (Request $request) {
 });
 
 Route::controller(AuthController::class)->group(function ($router) {
+    Route::post('signup', 'register')->name('register');
     Route::post('login', 'login')->name('login');
     Route::post('logout', 'logout')->name('logout')->middleware('auth.token');
     Route::post('refresh', 'refresh')->name('refresh');
