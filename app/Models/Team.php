@@ -29,7 +29,7 @@ class Team extends Model
         $activities = DB::table('team_project')
             ->join('projects', 'team_project.projects_id', '=', 'projects.id')
             ->join('activity', 'team_project.activity_idactivity', '=', 'activity.idactivity')
-            ->select('projects.id as id_project', 'activity.state as state_activity', 'activity.idactivity as id_activity', 'activity.date_end', 'activity.date_start', 'activity.created_at', 'team_project.users_id as id_user',  DB::raw('(SELECT name FROM users WHERE id = team_project.users_id LIMIT 1) as user_name'))
+            ->select('projects.id as id_project', 'activity.name as activity', 'activity.state as state_activity', 'activity.idactivity as id_activity', 'activity.date_end', 'activity.date_start', 'activity.created_at', 'team_project.users_id as id_user',  DB::raw('(SELECT name FROM users WHERE id = team_project.users_id LIMIT 1) as user_name'))
             ->where('projects.id', $idProject)
             ->get();
 
