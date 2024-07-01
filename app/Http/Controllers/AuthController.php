@@ -107,4 +107,8 @@ class AuthController extends Controller
 
         return new JsonResponse(['success' => true]);
     }
+
+
+    // PROYECTOS
+    
 }
