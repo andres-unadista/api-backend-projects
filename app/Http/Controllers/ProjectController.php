@@ -34,8 +34,8 @@ class ProjectController extends Controller
             $request->validate([
                 'id_user' => 'required|numeric',
                 'name' => 'required|string|max:255',
-                'date_start' => 'required|date_format:"Y-m-d H:i:s"',
-                'date_end' => 'required|date_format:"Y-m-d H:i:s"',
+                'date_start' => 'required|date_format:"Y-m-d"',
+                'date_end' => 'required|date_format:"Y-m-d"',
                 'state' => 'numeric',
             ]);
             $request['created_at'] = now();
