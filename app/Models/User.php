@@ -12,7 +12,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
-    const USER = 'User';
+    const USER = 'Profesional';
 
     /**
      * The attributes that are mass assignable.
