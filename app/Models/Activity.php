@@ -23,7 +23,7 @@ class Activity extends Model
         'state'
     ];
 
-    protected $attributes = ["state" => 1];
+    protected $attributes = ["state" => 0];
 
     protected static function booted()
     {
