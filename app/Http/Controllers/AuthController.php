@@ -78,7 +78,7 @@ class AuthController extends Controller
             // Validate form data
             $request->validate([
                 'name' => 'string|max:255',
-                'email' => 'string|max:255',
+                'email' => 'unique:users,email,'.$user->id,
                 'password' => 'string|max:255',
                 'role' => 'string',
                 'image' => 'string|max:255',
