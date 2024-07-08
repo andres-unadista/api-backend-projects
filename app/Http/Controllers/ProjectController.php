@@ -72,8 +72,8 @@ class ProjectController extends Controller
             $request->validate([
                 'id_user' => 'numeric',
                 'name' => 'string|max:255',
-                'date_start' => 'date_format:"Y-m-d H:i:s"',
-                'date_end' => 'date_format:"Y-m-d H:i:s"',
+                'date_start' => 'date_format:"Y-m-d"',
+                'date_end' => 'date_format:"Y-m-d"',
                 'state' => 'numeric',
             ]);
             $project->update($request->all());

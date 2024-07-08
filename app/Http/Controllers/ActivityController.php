@@ -50,8 +50,8 @@ class ActivityController extends Controller
             $request->validate([
                 'id_project' => 'required|numeric',
                 'name' => 'required|string|max:255',
-                'date_start' => 'required|date_format:"Y-m-d H:i:s"',
-                'date_end' => 'required|date_format:"Y-m-d H:i:s"',
+                'date_start' => 'required|date_format:"Y-m-d"',
+                'date_end' => 'required|date_format:"Y-m-d"',
             ]);
             $activity = Activity::create($request->all())->toArray();
             $team = Team::create([
@@ -96,8 +96,8 @@ class ActivityController extends Controller
             $request->validate([
                 'id_project' => 'numeric',
                 'name' => 'string|max:255',
-                'date_start' => 'date_format:"Y-m-d H:i:s"',
-                'date_end' => 'date_format:"Y-m-d H:i:s"',
+                'date_start' => 'date_format:"Y-m-d"',
+                'date_end' => 'date_format:"Y-m-d"',
                 'state' => 'numeric'
             ]);
             $activity->update($request->all());
