@@ -85,7 +85,7 @@ class AuthController extends Controller
             ]);
 
             $data = $request->all();
-            if ($data['password']) {
+            if (isset($data['password'])) {
                 $data['password'] = Hash::make($data['password']);
             }
             $user->update($data);

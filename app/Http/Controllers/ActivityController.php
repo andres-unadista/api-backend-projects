@@ -101,6 +101,15 @@ class ActivityController extends Controller
                 'state' => 'numeric'
             ]);
             $activity->update($request->all());
+
+            if($request->input('user_id') !== null ){
+                $activity_id = $activity['idactivity'];
+                $user_id = $request->input('user_id');
+                Team::where('activity_idactivity', $activity_id)
+                ->update(['users_id' => $user_id]);
+            }
+           
+
             return new JsonResponse(['activity' => $activity->refresh()], Response::HTTP_OK);
         } catch (\Throwable $e) {
             return response(['message' => 'Activity not updated'], Response::HTTP_INTERNAL_SERVER_ERROR);
