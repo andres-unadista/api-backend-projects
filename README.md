@@ -17,7 +17,7 @@ Sigue estos pasos para instalar y configurar el proyecto en tu entorno local:
 ### 1. **Clona el repositorio:**
    ``` git clone https://github.com/andres-unadista/api-backend-projects.git ```
 ### 2.	Navega al directorio del proyecto:
-cd nombre_del_proyecto
+cd api-backend-projects
 ### 3.	Instala las dependencias de PHP con Composer:
 ```composer install```
 ### 4.	Instala las dependencias de Node.js con NPM (opcional):
