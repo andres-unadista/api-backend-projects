@@ -15,7 +15,7 @@ Asegúrate de tener los siguientes requisitos instalados en tu máquina:
 Sigue estos pasos para instalar y configurar el proyecto en tu entorno local:
 
 ### 1. **Clona el repositorio:**
-   ``` git clone https://github.com/tu_usuario/nombre_del_proyecto.git ```
+   ``` git clone https://github.com/andres-unadista/api-backend-projects.git ```
 ### 2.	Navega al directorio del proyecto:
 cd nombre_del_proyecto
 ### 3.	Instala las dependencias de PHP con Composer:
