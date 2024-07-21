@@ -32,8 +32,8 @@ Luego, abre el archivo .env en tu editor de texto y configura las siguientes var
 Asegúrate de reemplazar nombre_de_la_base_de_datos, tu_usuario y tu_contraseña con los datos correctos de tu base de datos.
 ### 6.	Genera la clave de aplicación:
 Ejecuta el siguiente comando para generar una clave de aplicación:
-```php artisan key:generate
-### 7.	Ejecuta las migraciones de la b```ase de datos:
+```php artisan key:generate```
+### 7.	Ejecuta las migraciones de la base de datos:
 Si tu proyecto tiene migraciones, ejecútalas con:
 ```php artisan migrate```
 ### 8.	Inicia el servidor de desarrollo:
