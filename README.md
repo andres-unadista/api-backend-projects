@@ -33,9 +33,6 @@ Asegúrate de reemplazar nombre_de_la_base_de_datos, tu_usuario y tu_contraseña
 ### 6.	Genera la clave de aplicación:
 Ejecuta el siguiente comando para generar una clave de aplicación:
 ```php artisan key:generate```
-### 7.	Ejecuta las migraciones de la base de datos:
-Si tu proyecto tiene migraciones, ejecútalas con:
-```php artisan migrate```
-### 8.	Inicia el servidor de desarrollo:
+### 7.	Inicia el servidor de desarrollo:
 Para ejecutar el servidor de desarrollo, usa el siguiente comando:
 ```php artisan serve```
